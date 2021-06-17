@@ -227,4 +227,91 @@ alphabet<<("d") # instead of .push, i used <<
 caption = "A giraffe surrounded by "
 caption <<= "weezards!" # used << here too instead of +
     
-# 
+# Using the 'when' condition instead of if else statements
+    
+puts "What's your favorite language?"
+language = gets.chomp
+
+case language
+when "Ruby"
+  puts "Ruby is great for web apps!"
+when "Python"
+  puts "Python is great for science."
+when "JavaScript"
+  puts "JavaScript makes websites awesome."
+when "HTML"
+  puts "HTML is what websites are made of!"
+when  "CSS"
+  puts "CSS makes websites pretty."
+else
+  puts "I don't know that language!"
+end
+    
+# PROCS, BLOCKS and LAMBDAS
+    
+# Using the .times function to puts i'm a block 5 times
+    
+5.times do 
+  puts "I'm a block!"
+end
+    
+    
+# Like procs, lambdas are objects 
+    
+def lambda_demo(a_lambda)
+  puts "I'm the method!"
+  a_lambda.call
+end
+
+lambda_demo(lambda { puts "I'm the lambda!" })
+    
+# Lamda syntax
+    
+strings = ["leonardo", "donatello", "raphael", "michaelangelo"]
+
+symbolize = lambda {|x| x.to_sym} 
+# Created a new variable called symbolize and stored a lambda that takes one parameter and calls .to_sym on that parameter
+# Then used symbolize with the .collect method to convert the items in strings to symbols!
+
+# Write your code above this line!
+symbols = strings.collect(&symbolize)
+print symbols
+    
+    
+
+# Lambda vs procs
+# In this code, iron man wins because lambda goes back into the method after being called
+# But batman also wins because it returns immeadiately without returning the the batman_ironman_proc method
+    
+def batman_ironman_proc
+  victor = Proc.new { return "Batman will win!" }
+  victor.call
+  "Iron Man will win!"
+end
+
+puts batman_ironman_proc
+
+def batman_ironman_lambda
+  victor = lambda { return "Batman will win!" }
+  victor.call
+  "Iron Man will win!"
+end
+
+puts batman_ironman_lambda
+ 
+    
+# I have created a lambda symbol_filter that takes one parameter and checks to see if that parameter .is_a? Symbol
+# Then I created a new variable called symbols, and stored the result of calling my_array.select and passing it my lambda.
+# I then typed puts symbols at the end of the file in order to see the final contents of the array
+    
+my_array = ["raindrops", :kettles, "whiskers", :mittens, :packages]
+
+# This is where I added the code
+symbol_filter = lambda {|x| x.is_a? Symbol}
+symbols = my_array.select(&symbol_filter)
+
+my_array = ["raindrops", :kettles, "whiskers", :mittens, :packages]
+
+puts symbols
+    
+
