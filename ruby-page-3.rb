@@ -23,10 +23,12 @@ symbol_hash = {
 }
 
 
-# Ideally want the array of strings used later to be used as hash keys, but at the moment prefer them to be symbols so I am going to create a new variable
+=begin
+Ideally want the array of strings used later to be used as hash keys, but at the moment prefer them to be symbols so I am going to create a new variable
 (symbols) and store an empty array in it. Then I will use the .each method to iterate over the strings array.
 For each s in strings I will use .to_sym to convert s to a symbol and use .push to add that new symbol to symbols.
 Finally, the last line of code will print the symbols array.
+=end
 
 strings = ["HTML", "CSS", "JavaScript", "Python", "Ruby"]
 symbols = []
@@ -96,10 +98,133 @@ movie_ratings = {
   uhf: 1,
   lion_king: 3.5
 }
-# Add your code below!
 
 movie_ratings.each_key { |title| puts title }
 
+# PROJECT - ALBUM RATING PROGRAM
+
+movies = {
+  delerium: 3,
+  crazy: 4,
+  rasputin: 1
+}
+
+puts "What would you like to do?"
+puts "Type 'add' to add an album."
+puts "Type 'update' to update an album."
+puts "Type 'display' to display all albums."
+puts "Type 'delete' to delete an album."
+
+choice = gets.chomp.downcase
+case choice
+when 'add'
+  puts "What album do you want to add?"
+  title = gets.chomp
+  if albums[title.to_sym].nil?
+    puts "What's the rating? (Type a number 0 to 4.)"
+    rating = gets.chomp
+    albums[title.to_sym] = rating.to_i
+    puts "#{title} has been added with a rating of #{rating}."
+  else
+    puts "That album already exists! Its rating is #{albums[title.to_sym]}."
+  end
+when 'update'
+  puts "What album do you want to update?"
+  title = gets.chomp
+  if albums[title.to_sym].nil?
+    puts "Album not found!"
+  else
+    puts "What's the new rating? (Type a number 0 to 4.)"
+    rating = gets.chomp
+    albums[title.to_sym] = rating.to_i
+    puts "#{title} has been updated with new rating of #{rating}."
+  end
+when 'display'
+  albums.each do |album, rating|
+    puts "#{movie}: #{rating}"
+  end
+when 'delete'
+  puts "What album do you want to delete?"
+  title = gets.chomp
+  if albums[title.to_sym].nil?
+    puts "Album not found!"
+  else
+    albums.delete(title.to_sym)
+    puts "#{title} has been removed."
+  end
+else
+  puts "Sorry, I don't understand."
+end
+
+-------------------------------------------------
+# Using the IF statement and boolean
+
+puts "This is true" if true
+
+# I can do the same as the above but using the 'unless' statement
+
+puts "This statement is true" unless false
+
+# The ternary conditional expression (known as ternary because it take 3 arguments - boolean, true, false
+
+print true ? "true" : "false"
+
+# Using the 'case' statement which is easier than using the if/elsif statement sometimes, if you have loads of conditions to check
+
+puts "Hello there!"
+greeting = gets.chomp
+
+# adding case statements
+case greeting
+  when "English" then puts "Hello!"
+  when "French" then puts "Bonjour!"
+  when "German" then puts "Guten Tag!"
+  when "Finnish" then puts "Haloo!"
+  else puts "I don't know that language!"
+end
+
+# Using the conditional statement || symbol 
+    
+favorite_language ||= "Ruby"
+puts favorite_language
+    
+# short circuit evaluation
+    
+def a
+  puts "A was evaluated!"
+  return true
+end
+
+def b
+  puts "B was also evaluated!"
+  return true
+end
+
+puts a || b
+puts "true && false"
+puts a && b
 
 
+# Using the .upto method to go from L to P
+    
+"L".upto("P") { |letter| puts letter }
+    
+=begin
+You can call .push on an object but not a symbol, so if I called .push onto an object, it would return true but if I called .push onto a symbol, it would return false
+I'm going to use the .next method too to return the integer immediately following the integer it’s called on for example 4.next will return 5 or 2 would return 3
+=end
+    
+age = 25
 
+age.respond_to?(:next)
+
+    
+ # Using the concatenation operator '<<' which is also known as the shovel. This is used to add an element to the end of an array (works on strings and integers)
+    
+alphabet = ["a", "b", "c"]
+alphabet<<("d") # instead of .push, i used <<
+
+caption = "A giraffe surrounded by "
+caption <<= "weezards!" # used << here too instead of +
+    
+# 
